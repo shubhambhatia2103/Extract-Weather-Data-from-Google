@@ -2,15 +2,18 @@
 
 This guide demonstrates how to extract weather data from Google using Python. Google doesn't provide its own weather API; instead, it retrieves data from weather.com and displays it when you search on Google. Here, we'll scrape the data from Google and explore an alternative method to fetch a schematic depiction of a location’s weather data for the next two days in Python without utilizing an API.
 
-## Module Required
+### Method 1:
 
-- **Requests**: Requests allow you to send HTTP/1.1 requests extremely easily. This module also does not come built-in with Python. To install this, type the below command in the terminal.
+#### Dependencies:
+- **Requests**: Requests allow you to send HTTP/1.1 requests easily.
+- **bs4 (Beautiful Soup)**: A library for scraping information from web pages.
 
-    ```
-    pip install requests
-    ```
+To install the required modules, run the following command in your terminal:
 
-- **Beautiful Soup (bs4)**: Beautiful Soup is a library that makes it easy to scrape information from web pages. Whether it be an HTML or XML page, it can be used for iterating, searching, and modifying the data within it.
+```bash
+pip install requests
+```
+
 
 ## Approach
 
@@ -20,34 +23,25 @@ This guide demonstrates how to extract weather data from Google using Python. Go
 4. Extract the required data from the soup.
 5. Print the required data.
 
-## Step-wise Implementation
-
-### Step 1: Import the requests and bs4 library
-
+## Installation and Usage:
+Follow the step-wise implementation provided in the code below:
 ```python
 # importing the library
 import requests
 from bs4 import BeautifulSoup
-```
 
-### Step 2: Create a URL with the entered city name and pass it to the get function.
-
-```python
 # enter city name
 city = "lucknow"
 
 # create url
-url = "https://www.google.com/search?q="+"weather"+city
+url = "https://www.google.com/search?q=" + "weather" + city
 
 # requests instance
 html = requests.get(url).content
 
 # getting raw data
 soup = BeautifulSoup(html, 'html.parser')
-```
-### Step 3: Extract the required data from the soup.
 
-```python
 # get the temperature
 temp = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
 
@@ -58,11 +52,8 @@ str = soup.find('div', attrs={'class': 'BNeawe tAd8D AP7Wnd'}).text
 data = str.split('\n')
 time = data[0]
 sky = data[1]
-```
 
-### Step 4: Extract additional data from the soup.
-```python
-# list having all div tags having a particular class name
+# list having all div tags having particular class name
 listdiv = soup.findAll('div', attrs={'class': 'BNeawe s3v9rd AP7Wnd'})
 
 # particular list with required data
@@ -72,11 +63,6 @@ strd = listdiv[5].text
 pos = strd.find('Wind')
 other_data = strd[pos:]
 
-```
-
-
-### Step 5: Printing all the data\
-```python
 # printing all the data
 print("Temperature is", temp)
 print("Time: ", time)
