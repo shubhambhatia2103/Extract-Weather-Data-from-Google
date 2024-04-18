@@ -70,19 +70,47 @@ print("Sky Description: ", sky)
 print(other_data)
 
 ```
-## Usage
-To use this code, follow these steps:
+### Method 2:
+### Dependencies:
+- **Requests**: For sending HTTP requests.
+Install requests using:
 
-1. Install the required modules using the provided command.
-2. Copy the Python code into your project.
-3. Replace the city variable with the desired city name.
-4. Run the script.
+```bash
+pip install requests
+```
+## Approach:
+1. Import the requests module.
+2. Send a request to retrieve IP location information.
+3. Extract the city location in JSON format.
+4. Pass the city name to retrieve weather data.
+5. Print the weather information.
 
-## Dependencies
-- Python 3.x
-- requests
-- bs4
+## Installation and Usage:
+Follow the provided code implementation:
+```python
+# Python code to display schematic weather details
+import requests
 
+# Sending requests to get the IP Location Information
+res = requests.get('https://ipinfo.io/')
+
+# Receiving the response in JSON format
+data = res.json()
+
+# Extracting the Location of the City from the response
+citydata = data['city']
+
+# Passing the City name to the url
+url = 'https://wttr.in/{}'.format(citydata)
+
+# Getting the Weather Data of the City
+res = requests.get(url)
+
+# Printing the results
+print(citydata)
+print(res.text)
+
+```
 ## Contact
 
 [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/linkedin.png" title="LinkedIn">](https://www.linkedin.com/in/shubhambhatia2103/) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/github.png" title="Github">](https://github.com/shubhambhatia2103) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" title="Instagram">](https://instagram.com/6eingshubham) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/twitter-squared.png" title="Twitter">](https://twitter.com/whoodattboyy)
