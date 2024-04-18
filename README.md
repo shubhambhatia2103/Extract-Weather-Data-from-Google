@@ -70,6 +70,13 @@ print("Sky Description: ", sky)
 print(other_data)
 
 ```
+### Output
+![](outputs/method1.png)
+
+
+
+
+
 ### Method 2:
 ### Dependencies:
 - **Requests**: For sending HTTP requests.
