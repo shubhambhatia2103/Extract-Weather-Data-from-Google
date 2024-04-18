@@ -2,15 +2,18 @@
 
 This guide demonstrates how to extract weather data from Google using Python. Google doesn't provide its own weather API; instead, it retrieves data from weather.com and displays it when you search on Google. Here, we'll scrape the data from Google and explore an alternative method to fetch a schematic depiction of a location’s weather data for the next two days in Python without utilizing an API.
 
-## Module Required
+### Method 1:
 
-- **Requests**: Requests allow you to send HTTP/1.1 requests extremely easily. This module also does not come built-in with Python. To install this, type the below command in the terminal.
+#### Dependencies:
+- **Requests**: Requests allow you to send HTTP/1.1 requests easily.
+- **bs4 (Beautiful Soup)**: A library for scraping information from web pages.
 
-    ```
-    pip install requests
-    ```
+To install the required modules, run the following command in your terminal:
 
-- **Beautiful Soup (bs4)**: Beautiful Soup is a library that makes it easy to scrape information from web pages. Whether it be an HTML or XML page, it can be used for iterating, searching, and modifying the data within it.
+```bash
+pip install requests
+```
+
 
 ## Approach
 
@@ -20,34 +23,25 @@ This guide demonstrates how to extract weather data from Google using Python. Go
 4. Extract the required data from the soup.
 5. Print the required data.
 
-## Step-wise Implementation
-
-### Step 1: Import the requests and bs4 library
-
+## Installation and Usage:
+Follow the step-wise implementation provided in the code below:
 ```python
 # importing the library
 import requests
 from bs4 import BeautifulSoup
-```
 
-### Step 2: Create a URL with the entered city name and pass it to the get function.
-
-```python
 # enter city name
-city = "lucknow"
+city = input("Enter the Name of City ->  ")
 
 # create url
-url = "https://www.google.com/search?q="+"weather"+city
+url = "https://www.google.com/search?q=" + "weather" + city
 
 # requests instance
 html = requests.get(url).content
 
 # getting raw data
 soup = BeautifulSoup(html, 'html.parser')
-```
-### Step 3: Extract the required data from the soup.
 
-```python
 # get the temperature
 temp = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
 
@@ -58,11 +52,8 @@ str = soup.find('div', attrs={'class': 'BNeawe tAd8D AP7Wnd'}).text
 data = str.split('\n')
 time = data[0]
 sky = data[1]
-```
 
-### Step 4: Extract additional data from the soup.
-```python
-# list having all div tags having a particular class name
+# list having all div tags having particular class name
 listdiv = soup.findAll('div', attrs={'class': 'BNeawe s3v9rd AP7Wnd'})
 
 # particular list with required data
@@ -72,11 +63,6 @@ strd = listdiv[5].text
 pos = strd.find('Wind')
 other_data = strd[pos:]
 
-```
-
-
-### Step 5: Printing all the data\
-```python
 # printing all the data
 print("Temperature is", temp)
 print("Time: ", time)
@@ -84,19 +70,47 @@ print("Sky Description: ", sky)
 print(other_data)
 
 ```
-## Usage
-To use this code, follow these steps:
+### Method 2:
+### Dependencies:
+- **Requests**: For sending HTTP requests.
+Install requests using:
 
-1. Install the required modules using the provided command.
-2. Copy the Python code into your project.
-3. Replace the city variable with the desired city name.
-4. Run the script.
+```bash
+pip install requests
+```
+## Approach:
+1. Import the requests module.
+2. Send a request to retrieve IP location information.
+3. Extract the city location in JSON format.
+4. Pass the city name to retrieve weather data.
+5. Print the weather information.
 
-## Dependencies
-- Python 3.x
-- requests
-- bs4
+## Installation and Usage:
+Follow the provided code implementation:
+```python
+# Python code to display schematic weather details
+import requests
 
+# Sending requests to get the IP Location Information
+res = requests.get('https://ipinfo.io/')
+
+# Receiving the response in JSON format
+data = res.json()
+
+# Extracting the Location of the City from the response
+citydata = data['city']
+
+# Passing the City name to the url
+url = 'https://wttr.in/{}'.format(citydata)
+
+# Getting the Weather Data of the City
+res = requests.get(url)
+
+# Printing the results
+print(citydata)
+print(res.text)
+
+```
 ## Contact
 
 [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/linkedin.png" title="LinkedIn">](https://www.linkedin.com/in/shubhambhatia2103/) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/github.png" title="Github">](https://github.com/shubhambhatia2103) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" title="Instagram">](https://instagram.com/6eingshubham) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/twitter-squared.png" title="Twitter">](https://twitter.com/whoodattboyy)
