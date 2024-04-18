@@ -28,6 +28,7 @@ This guide demonstrates how to extract weather data from Google using Python. Go
 # importing the library
 import requests
 from bs4 import BeautifulSoup
+```
 
 ### Step 2: Create a URL with the entered city name and pass it to the get function.
 
@@ -44,3 +45,69 @@ html = requests.get(url).content
 # getting raw data
 soup = BeautifulSoup(html, 'html.parser')
 ```
+### Step 3: Extract the required data from the soup.
+
+```python
+# get the temperature
+temp = soup.find('div', attrs={'class': 'BNeawe iBp4i AP7Wnd'}).text
+
+# this contains time and sky description
+str = soup.find('div', attrs={'class': 'BNeawe tAd8D AP7Wnd'}).text
+
+# format the data
+data = str.split('\n')
+time = data[0]
+sky = data[1]
+```
+
+### Step 4: Extract additional data from the soup.
+```python
+# list having all div tags having a particular class name
+listdiv = soup.findAll('div', attrs={'class': 'BNeawe s3v9rd AP7Wnd'})
+
+# particular list with required data
+strd = listdiv[5].text
+
+# formatting the string
+pos = strd.find('Wind')
+other_data = strd[pos:]
+
+```
+
+
+### Step 5: Printing all the data\
+```python
+# printing all the data
+print("Temperature is", temp)
+print("Time: ", time)
+print("Sky Description: ", sky)
+print(other_data)
+
+```
+## Usage
+To use this code, follow these steps:
+
+1. Install the required modules using the provided command.
+2. Copy the Python code into your project.
+3. Replace the city variable with the desired city name.
+4. Run the script.
+
+## Dependencies
+- Python 3.x
+- requests
+- bs4
+
+## Contact
+
+[<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/linkedin.png" title="LinkedIn">](https://www.linkedin.com/in/shubhambhatia2103/) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/github.png" title="Github">](https://github.com/shubhambhatia2103) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/instagram-new.png" title="Instagram">](https://instagram.com/6eingshubham) [<img target="_blank" src="https://img.icons8.com/bubbles/100/000000/twitter-squared.png" title="Twitter">](https://twitter.com/whoodattboyy)
+
+
+
+
+
+
+
+
+
+
+
