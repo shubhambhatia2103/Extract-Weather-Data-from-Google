@@ -31,7 +31,7 @@ import requests
 from bs4 import BeautifulSoup
 
 # enter city name
-city = "lucknow"
+city = input("Enter the Name of City ->  ")
 
 # create url
 url = "https://www.google.com/search?q=" + "weather" + city
