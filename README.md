@@ -113,7 +113,6 @@ res = requests.get(url)
 # Printing the results
 print(citydata)
 print(res.text)
-
 ```
 ### Output
 ![](outputs/method2.png)
