@@ -2,9 +2,9 @@
 
 This guide demonstrates how to extract weather data from Google using Python. Google doesn't provide its own weather API; instead, it retrieves data from weather.com and displays it when you search on Google. Here, we'll scrape the data from Google and explore an alternative method to fetch a schematic depiction of a location’s weather data for the next two days in Python without utilizing an API.
 
-### Method 1:
+## Method 1:
 
-#### Dependencies:
+### Dependencies:
 - **Requests**: Requests allow you to send HTTP/1.1 requests easily.
 - **bs4 (Beautiful Soup)**: A library for scraping information from web pages.
 
@@ -15,7 +15,7 @@ pip install requests
 ```
 
 
-## Approach
+### Approach
 
 1. Import the required modules.
 2. Construct the URL with the entered city name.
@@ -23,7 +23,7 @@ pip install requests
 4. Extract the required data from the soup.
 5. Print the required data.
 
-## Installation and Usage:
+### Installation and Usage:
 Follow the step-wise implementation provided in the code below:
 ```python
 # importing the library
@@ -74,22 +74,22 @@ print(other_data)
 ![](outputs/method1.png)
 
 
-### Method 2:
-#### Dependencies:
+## Method 2:
+### Dependencies:
 - **Requests**: For sending HTTP requests.
 Install requests using:
 
 ```bash
 pip install requests
 ```
-## Approach:
+### Approach:
 1. Import the requests module.
 2. Send a request to retrieve IP location information.
 3. Extract the city location in JSON format.
 4. Pass the city name to retrieve weather data.
 5. Print the weather information.
 
-## Installation and Usage:
+### Installation and Usage:
 Follow the provided code implementation:
 ```python
 # Python code to display schematic weather details
