@@ -75,7 +75,7 @@ print(other_data)
 
 
 ### Method 2:
-### Dependencies:
+#### Dependencies:
 - **Requests**: For sending HTTP requests.
 Install requests using:
 
